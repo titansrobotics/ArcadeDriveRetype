@@ -4,8 +4,16 @@
 
 package frc.robot;
 
+
+// import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
+// import edu.wpi.first.wpilibj.motorcontrol.Spark;
+// import edu.wpi.first.wpilibj.motorcontrol.MotorController; Just in case
+//camera server import
+import edu.wpi.first.cameraserver.CameraServer;
+
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -18,11 +26,22 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  private double startTime;
+  //private MotorController extendMotorController = new MotorController(extendMotorController) {
+   // PWM = 1;
+  //};
+
+
+
+
+
+  //private double startTime;
 
   @Override
   public void robotInit() {
-
+    //Forces the cameras to start. Dunno if we actually need this but I'm adding it
+    // just to make sure we get both camera streams up and running.
+    CameraServer.startAutomaticCapture("Cam0",0);
+    CameraServer.startAutomaticCapture("Cam1",1);
   }
 
   @Override
@@ -30,19 +49,20 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    startTime = Timer.getFPGATimestamp();
+    //startTime = Timer.getFPGATimestamp();
   }
 
   @Override
   public void autonomousPeriodic() {
-    double time = Timer.getFPGATimestamp();
+    // double time = Timer.getFPGATimestamp();
 
-    if(time - startTime < 3){
-      //testing autonomous
-      Autonomous.startAuto();
-    } else {
-      Autonomous.stopAuto();
-    }
+    // if(time - startTime < 3){
+    //   leftMotor.set(0.6);
+    //   rightMotor.set(0.6);
+    // } else {
+    //   leftMotor.set(0);
+    //   rightMotor.set(0);
+    // }
     
   }
 
@@ -52,11 +72,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    // ArcadeDrive.arcadeDrive();
-
-    // ElevatorMotion.moveElevator();
-    // ElevatorMotion.moveArm();
-    // ElevatorMotion.moveClaw();
+    ArcadeDrive.arcadeDrive();
   }
 
   @Override
