@@ -31,16 +31,16 @@ public class ElevatorMotion {
     public static void moveElevator(){
         //adjust depending on how speed is dictated
         //currently just based on 80% raw input
-        double elevatorSpeed = -elevatorJoy.getRawAxis(1)*0.3;
+        double elevatorSpeed = -elevatorJoy.getRawAxis(1)*0.5;
         elevLeft.set(elevatorSpeed);
         elevRight.set(-elevatorSpeed);
     }
 
     public static void moveArm(){
         if(raiseArmButton.getAsBoolean()){
-            armRotate.set(0.5);
+            armRotate.set(0.3);
         } else if(lowerArmButton.getAsBoolean()){
-            armRotate.set(-0.5);
+            armRotate.set(-0.3);
         } else {
             armRotate.set(0);
         }
