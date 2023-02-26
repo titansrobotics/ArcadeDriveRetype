@@ -9,14 +9,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class ElevatorMotion {
     /***********CHANGE CHANNEL VALUE********/
     //Motors
+    private static CANSparkMax elevatorLeft = new CANSparkMax(6, MotorType.kBrushless);
     private static CANSparkMax elevatorRight = new CANSparkMax(0, MotorType.kBrushless);
-    private static CANSparkMax elevatorLeft = new CANSparkMax(0, MotorType.kBrushless);
-    
     private static CANSparkMax armRotate = new CANSparkMax(0, MotorType.kBrushless);
-    private static CANSparkMax armLeft = new CANSparkMax(0, MotorType.kBrushless);
-    private static CANSparkMax armRight = new CANSparkMax(0, MotorType.kBrushless);
-    private static MotorControllerGroup elevatorMotors = new MotorControllerGroup(elevatorRight, elevatorLeft);
-    private static MotorControllerGroup armMotors = new MotorControllerGroup(armLeft, armRight);
+    private static CANSparkMax clawLeft = new CANSparkMax(0, MotorType.kBrushless);
+    private static CANSparkMax clawRight = new CANSparkMax(0, MotorType.kBrushless);
     
     //Inputs
     private static Joystick elevatorJoy = new Joystick(1);
@@ -26,17 +23,22 @@ public class ElevatorMotion {
     public static void moveElevator(){
         //adjust depending on how speed is dictated
         //currently just based on 80% raw input
-        double joySpeed = -elevatorJoy.getRawAxis(1)*0.8;
-        elevatorMotors.set(joySpeed);
+        double elevatorSpeed = -elevatorJoy.getRawAxis(1)*0.2;
+        elevatorLeft.set(elevatorSpeed);
+        elevatorRight.set(-elevatorSpeed);
     }
 
     public static void moveArm(){
         if(raiseButton.getAsBoolean()){
-            armMotors.set(0.7);
+            armRotate.set(0.7);
         } else if(lowerButton.getAsBoolean()){
-            armMotors.set(-0.7);
+            armRotate.set(-0.7);
         } else {
-            armMotors.set(0);
+            armRotate.set(0);
         }
+    }
+
+    public static void moveClaw(){
+
     }
 }
