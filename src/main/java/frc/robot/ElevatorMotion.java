@@ -1,17 +1,22 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class ElevatorMotion {
     /***********CHANGE CHANNEL VALUE********/
     //Motors
-    private static PWMSparkMax elevatorMotorLeft = new PWMSparkMax(0);
-    private static PWMSparkMax elevatorMotorRight = new PWMSparkMax(0);
-    private static MotorControllerGroup elevatorMotors = new MotorControllerGroup(elevatorMotorLeft, elevatorMotorRight);
-    private static PWMSparkMax armMotor = new PWMSparkMax(0);
+    private static CANSparkMax elevatorRight = new CANSparkMax(0, MotorType.kBrushless);
+    private static CANSparkMax elevatorLeft = new CANSparkMax(0, MotorType.kBrushless);
+    
+    private static CANSparkMax armRotate = new CANSparkMax(0, MotorType.kBrushless);
+    private static CANSparkMax armLeft = new CANSparkMax(0, MotorType.kBrushless);
+    private static CANSparkMax armRight = new CANSparkMax(0, MotorType.kBrushless);
+    private static MotorControllerGroup elevatorMotors = new MotorControllerGroup(elevatorRight, elevatorLeft);
+    private static MotorControllerGroup armMotors = new MotorControllerGroup(armLeft, armRight);
     
     //Inputs
     private static Joystick elevatorJoy = new Joystick(1);
@@ -27,11 +32,11 @@ public class ElevatorMotion {
 
     public static void moveArm(){
         if(raiseButton.getAsBoolean()){
-            armMotor.set(0.9);
+            armMotors.set(0.7);
         } else if(lowerButton.getAsBoolean()){
-            armMotor.set(-0.9);
+            armMotors.set(-0.7);
         } else {
-            armMotor.set(0);
+            armMotors.set(0);
         }
     }
 }
