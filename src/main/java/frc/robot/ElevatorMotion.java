@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class ElevatorMotion {
     /***********CHANGE CHANNEL VALUE********/
     //Motors
-    private static CANSparkMax elevatorLeft = new CANSparkMax(0, MotorType.kBrushless);
-    private static CANSparkMax elevatorRight = new CANSparkMax(0, MotorType.kBrushless);
+    private static CANSparkMax elevLeft = new CANSparkMax(0, MotorType.kBrushless);
+    private static CANSparkMax elevRight = new CANSparkMax(0, MotorType.kBrushless);
     private static CANSparkMax armRotate = new CANSparkMax(0, MotorType.kBrushless);
     private static CANSparkMax clawLeft = new CANSparkMax(0, MotorType.kBrushless);
     private static CANSparkMax clawRight = new CANSparkMax(0, MotorType.kBrushless);
@@ -31,8 +31,8 @@ public class ElevatorMotion {
         //adjust depending on how speed is dictated
         //currently just based on 80% raw input
         double elevatorSpeed = -elevatorJoy.getRawAxis(1)*0.3;
-        elevatorLeft.set(elevatorSpeed);
-        elevatorRight.set(-elevatorSpeed);
+        elevLeft.set(elevatorSpeed);
+        elevRight.set(-elevatorSpeed);
     }
 
     public static void moveArm(){
