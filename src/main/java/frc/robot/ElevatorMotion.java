@@ -15,6 +15,7 @@ public class ElevatorMotion {
     private static CANSparkMax clawLeft = new CANSparkMax(0, MotorType.kBrushless);
     private static CANSparkMax clawRight = new CANSparkMax(0, MotorType.kBrushless);
 
+    
 
     //Limit Switches
     private static DigitalInput topElevatorLimit = new DigitalInput(0);

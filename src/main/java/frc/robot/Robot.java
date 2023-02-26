@@ -35,15 +35,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    // double time = Timer.getFPGATimestamp();
+    double time = Timer.getFPGATimestamp();
 
-    // if(time - startTime < 3){
-    //   leftMotor.set(0.6);
-    //   rightMotor.set(0.6);
-    // } else {
-    //   leftMotor.set(0);
-    //   rightMotor.set(0);
-    // }
+    if(time - startTime < 3){
+      ArcadeDrive.arcadeDrive();
+    }
     
   }
 
