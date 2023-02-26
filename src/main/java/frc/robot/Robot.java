@@ -67,6 +67,8 @@ public class Robot extends TimedRobot {
     ArcadeDrive.arcadeDrive();
 
     ElevatorMotion.moveElevator();
+    ElevatorMotion.moveArm();
+    ElevatorMotion.moveClaw();
   }
 
   @Override
