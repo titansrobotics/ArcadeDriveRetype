@@ -4,10 +4,6 @@
 
 package frc.robot;
 
-// import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-// import edu.wpi.first.wpilibj.Joystick;
-// import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 /**
@@ -21,13 +17,6 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-
-  //private MotorController extendMotorController = new MotorController(extendMotorController) {
-   // PWM = 1;
-  //};
-
-
-
 
   private double startTime;
 

@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ElevatorMotion {
     /***********CHANGE CHANNEL VALUE********/
@@ -13,7 +14,12 @@ public class ElevatorMotion {
     private static CANSparkMax armRotate = new CANSparkMax(0, MotorType.kBrushless);
     private static CANSparkMax clawLeft = new CANSparkMax(0, MotorType.kBrushless);
     private static CANSparkMax clawRight = new CANSparkMax(0, MotorType.kBrushless);
-    
+
+
+    //Limit Switches
+    private static DigitalInput topElevatorLimit = new DigitalInput(0);
+    private static DigitalInput bottomElevatorLimit = new DigitalInput(1);
+
     //Inputs
     private static Joystick elevatorJoy = new Joystick(1);
     private static JoystickButton raiseArmButton = new JoystickButton(elevatorJoy, 5);
