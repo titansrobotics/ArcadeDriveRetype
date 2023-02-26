@@ -38,7 +38,10 @@ public class Robot extends TimedRobot {
     double time = Timer.getFPGATimestamp();
 
     if(time - startTime < 3){
-      ArcadeDrive.arcadeDrive();
+      //testing autonomous
+      Autonomous.startAuto();
+    } else {
+      Autonomous.stopAuto();
     }
     
   }
@@ -49,11 +52,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    ArcadeDrive.arcadeDrive();
+    // ArcadeDrive.arcadeDrive();
 
-    ElevatorMotion.moveElevator();
-    ElevatorMotion.moveArm();
-    ElevatorMotion.moveClaw();
+    // ElevatorMotion.moveElevator();
+    // ElevatorMotion.moveArm();
+    // ElevatorMotion.moveClaw();
   }
 
   @Override
