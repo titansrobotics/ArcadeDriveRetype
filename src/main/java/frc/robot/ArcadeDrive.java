@@ -2,9 +2,11 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class ArcadeDrive {
 
+    private static Encoder driveEncoder = new Encoder(0,1);
     private static WPI_VictorSPX leftMotor = new WPI_VictorSPX(1);
     private static WPI_VictorSPX rightMotor = new WPI_VictorSPX(3);
 
