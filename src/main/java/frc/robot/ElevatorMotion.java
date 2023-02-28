@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.DigitalInput;
 
+//if errors reload projects (Shift+Alt+U)
 public class ElevatorMotion {
     /***********CHANGE CHANNEL VALUE********/
     //Motors
