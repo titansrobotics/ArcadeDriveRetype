@@ -8,8 +8,8 @@ public class Autonomous {
     private static Encoder elevatorEncoder = new Encoder(0, 1);
     private static Encoder driveEncoder = new Encoder(0,1);
     private static int ppr = 2048;
-    private static double wheelD = 0.5; //in feet
-    private static double elevD = 0.375/12; //3/8 inch to feet
+    private static double wheelD = 5.968/12; //in feet
+    private static double elevD = 1.638/12; //3/8 inch to feet
     private static double elevatorGearBox = 12;
     
     public static void setUpEncoder(){
@@ -18,7 +18,7 @@ public class Autonomous {
         armEncoder.reset();
         armEncoder.setDistancePerPulse(360/ppr); //only need rotation
         elevatorEncoder.reset();
-        elevatorEncoder.setDistancePerPulse(360/ppr*Math.PI*elevD*elevatorGearBox);
+        elevatorEncoder.setDistancePerPulse(360/ppr*Math.PI*elevD/elevatorGearBox);
     }
 
     public static void drive15ft(){
