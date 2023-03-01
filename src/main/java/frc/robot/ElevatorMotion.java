@@ -28,6 +28,10 @@ public class ElevatorMotion {
     private static JoystickButton lowerArmButton = new JoystickButton(elevatorJoy, 3);
     private static JoystickButton clawClose = new JoystickButton(elevatorJoy, 1);
     private static JoystickButton clawOpen = new JoystickButton(elevatorJoy, 2);
+    // private static JoystickButton mode1 = new JoystickButton(elevatorJoy, 8);
+    // private static JoystickButton mode2 = new JoystickButton(elevatorJoy, 10);
+    // private static JoystickButton mode3 = new JoystickButton(elevatorJoy, 12);
+
 
     public static boolean moveElevator(){
         //adjust depending on how speed is dictated
