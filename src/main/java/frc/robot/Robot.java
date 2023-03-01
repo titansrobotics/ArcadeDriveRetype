@@ -5,11 +5,8 @@
 package frc.robot;
 
 
-// import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.TimedRobot;
-//import edu.wpi.first.wpilibj.Timer;
-// import edu.wpi.first.wpilibj.motorcontrol.Spark;
-// import edu.wpi.first.wpilibj.motorcontrol.MotorController; Just in case
+import edu.wpi.first.wpilibj.Timer;
 //camera server import
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -26,15 +23,7 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  //private MotorController extendMotorController = new MotorController(extendMotorController) {
-   // PWM = 1;
-  //};
-
-
-
-
-
-  //private double startTime;
+  private double startTime;
 
   @Override
   public void robotInit() {
@@ -49,20 +38,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    //startTime = Timer.getFPGATimestamp();
+    startTime = Timer.getFPGATimestamp();
   }
 
   @Override
   public void autonomousPeriodic() {
-    // double time = Timer.getFPGATimestamp();
+    double time = Timer.getFPGATimestamp();
 
-    // if(time - startTime < 3){
-    //   leftMotor.set(0.6);
-    //   rightMotor.set(0.6);
-    // } else {
-    //   leftMotor.set(0);
-    //   rightMotor.set(0);
-    // }
+    if(time - startTime < 3){
+      ArcadeDrive.arcadeDrive();
+    } else {
+      ArcadeDrive.stopDrive();
+    }
     
   }
 

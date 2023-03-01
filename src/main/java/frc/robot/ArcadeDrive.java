@@ -20,4 +20,9 @@ public class ArcadeDrive {
         leftMotor.set(left);
         rightMotor.set(-right);
     }
+
+    public static void stopDrive(){
+        leftMotor.set(0);
+        rightMotor.set(0);
+    }
 }

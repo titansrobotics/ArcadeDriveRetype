@@ -19,8 +19,8 @@ public class ElevatorMotion {
     
 
     //Limit Switches
-    private static DigitalInput topElevatorLimit = new DigitalInput(0);
-    private static DigitalInput bottomElevatorLimit = new DigitalInput(1);
+    private static DigitalInput topElevLimit = new DigitalInput(0);
+    private static DigitalInput bottomElevLimit = new DigitalInput(1);
 
     //Inputs
     private static Joystick elevatorJoy = new Joystick(1);
@@ -29,12 +29,24 @@ public class ElevatorMotion {
     private static JoystickButton clawClose = new JoystickButton(elevatorJoy, 1);
     private static JoystickButton clawOpen = new JoystickButton(elevatorJoy, 2);
 
-    public static void moveElevator(){
+    public static boolean moveElevator(){
         //adjust depending on how speed is dictated
+        //boolean return describes if a switch is in contact
         //currently just based on 80% raw input
-        double elevatorSpeed = -elevatorJoy.getRawAxis(1)*0.5;
-        elevLeft.set(elevatorSpeed);
-        elevRight.set(-elevatorSpeed);
+        double elevatorSpeed = -elevatorJoy.getRawAxis(1)*0.8;
+        if(topElevLimit.get() && elevatorSpeed > 0){
+            elevLeft.set(0);
+            elevRight.set(0);
+            return true;
+        } else if(bottomElevLimit.get() && elevatorSpeed < 0){
+            elevLeft.set(0);
+            elevRight.set(0);
+            return true;
+        }else{
+            elevLeft.set(elevatorSpeed);
+            elevRight.set(-elevatorSpeed);
+            return false;
+        }
     }
 
     public static void moveArm(){
@@ -55,6 +67,7 @@ public class ElevatorMotion {
             clawLeft.set(-0.2);
             clawRight.set(0.2);
         } else {
+            //auto holding that may be unnecessary
             clawLeft.set(0.05);
             clawRight.set(-0.05);
         }
