@@ -10,8 +10,10 @@ public class ArcadeDrive {
 
     private static Joystick driveJoy = new Joystick(0);
 
+    private static double defaultSpeed = 0.6;
+
     public static void arcadeDrive(){
-        double speed = -driveJoy.getRawAxis(1)*0.6;
+        double speed = -driveJoy.getRawAxis(1)*defaultSpeed;
         double turn = driveJoy.getRawAxis(2)*0.3;
 
         double left = speed + turn;
@@ -21,7 +23,12 @@ public class ArcadeDrive {
         rightMotor.set(-right);
     }
 
-    public static void stopDrive(){
+    public static void startDriveAuto(){
+        leftMotor.set(defaultSpeed);
+        rightMotor.set(-defaultSpeed);
+    }
+
+    public static void stopDriveAuto(){
         leftMotor.set(0);
         rightMotor.set(0);
     }
