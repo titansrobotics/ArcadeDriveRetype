@@ -9,7 +9,7 @@ public class Autonomous {
     private static Encoder driveEncoder = new Encoder(0,1);
     private static int ppr = 2048;
     private static double wheelD = 5.968/12; //in feet
-    private static double elevD = 1.638/12; //3/8 inch to feet
+    private static double elevD = 1.638/12; //in feet
     private static double elevatorGearBox = 12;
     
     public static void setUpEncoder(){
