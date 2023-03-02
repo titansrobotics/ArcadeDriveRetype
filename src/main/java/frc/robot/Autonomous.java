@@ -14,11 +14,11 @@ public class Autonomous {
     
     public static void setUpEncoder(){
         driveEncoder.reset();
-        driveEncoder.setDistancePerPulse(360/ppr*Math.PI*wheelD);
+        driveEncoder.setDistancePerPulse(2*Math.PI/ppr*Math.PI*wheelD);
         armEncoder.reset();
         armEncoder.setDistancePerPulse(360/ppr); //only need rotation
         elevatorEncoder.reset();
-        elevatorEncoder.setDistancePerPulse(360/ppr*Math.PI*elevD/elevatorGearBox);
+        elevatorEncoder.setDistancePerPulse(2*Math.PI/ppr*Math.PI*elevD/elevatorGearBox);
     }
 
     public static void drive15ft(){

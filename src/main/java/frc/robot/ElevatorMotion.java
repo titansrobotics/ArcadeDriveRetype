@@ -20,7 +20,6 @@ public class ElevatorMotion {
 
     //Limit Switches
     private static DigitalInput topElevLimit = new DigitalInput(0);
-    private static DigitalInput bottomElevLimit = new DigitalInput(1);
 
     //Inputs
     private static Joystick elevatorJoy = new Joystick(1);
@@ -43,33 +42,29 @@ public class ElevatorMotion {
     private static double armAngle = 0;
     private static double elevatorDistance = 0; //in feet
 
-    public static boolean moveElevator(){
+    public static void moveElevator(){
         //boolean return describes if a switch is in contact
         double elevatorSpeed = -elevatorJoy.getRawAxis(1)*elevatorDefaultSpeed;
         if(topElevLimit.get() && elevatorSpeed > 0){
             elevLeft.set(0);
             elevRight.set(0);
-            return true;
-        } else if(bottomElevLimit.get() && elevatorSpeed < 0){
+       } else if(Autonomous.getElevatorDistance() < 1/12.0 && elevatorSpeed < 0){
             elevLeft.set(0);
             elevRight.set(0);
-            return true;
         }else{
             elevLeft.set(elevatorSpeed);
             elevRight.set(elevatorSpeed);
-            return false;
         }
     }
 
     public static void raiseElevator(){
         elevLeft.set(elevatorDefaultSpeed);
-        elevRight.set(-elevatorDefaultSpeed);
+        elevRight.set(elevatorDefaultSpeed);
     }
 
     public static void lowerElevator(){
         elevLeft.set(-elevatorDefaultSpeed);
-        elevRight.set(elevatorDefaultSpeed);
-    }
+        elevRight.set(-elevatorDefaultSpeed);   }
 
     public static void stopElevator(){
         elevLeft.set(0);
@@ -77,9 +72,9 @@ public class ElevatorMotion {
     }
 
     public static void moveArm(){
-        if(raiseArmButton.getAsBoolean()){
+        if(raiseArmButton.getAsBoolean() && Autonomous.getArmRotation() < armAngle){
             armRotate.set(armRotateDefaultSpeed);
-        } else if(lowerArmButton.getAsBoolean()){
+        } else if(lowerArmButton.getAsBoolean() && Autonomous.getArmRotation() > 1){
             armRotate.set(-armRotateDefaultSpeed);
         } else {
             armRotate.set(0);
@@ -107,8 +102,8 @@ public class ElevatorMotion {
             clawRight.set(clawDefaultSpeed);
         } else {
             //auto holding that may be unnecessary
-            clawLeft.set(0.05);
-            clawRight.set(-0.05);
+            clawLeft.set(0);
+            clawRight.set(0);
         }
     }
 
