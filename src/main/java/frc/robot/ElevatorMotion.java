@@ -56,7 +56,7 @@ public class ElevatorMotion {
             return true;
         }else{
             elevLeft.set(elevatorSpeed);
-            elevRight.set(-elevatorSpeed);
+            elevRight.set(elevatorSpeed);
             return false;
         }
     }
