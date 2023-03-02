@@ -151,12 +151,12 @@ public class ElevatorMotion {
         } else if(mode3.getAsBoolean() ){
             while(true){
                 if(eject1.getAsBoolean() && eject2.getAsBoolean()) break;
-                if(Autonomous.getArmRotation() > armAngle){
+                if(Autonomous.getArmRotation() < armAngle){
                     raiseArm();
                 } else {
                     armPositioned = true;
                 }
-                if(Autonomous.getElevatorDistance() > elevatorDistance){
+                if(Autonomous.getElevatorDistance() < elevatorDistance){
                     raiseElevator();
                 } else {
                     elevPositioned = true;
