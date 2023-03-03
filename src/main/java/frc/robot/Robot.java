@@ -6,7 +6,7 @@ package frc.robot;
 
 
 import edu.wpi.first.wpilibj.TimedRobot;
-//import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Timer;
 //camera server import
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  //private double startTime;
+  private double startTime;
 
   @Override
   public void robotInit() {
@@ -38,15 +38,21 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    Autonomous.setUpEncoder();
-    //startTime = Timer.getFPGATimestamp();
+    //Autonomous.setUpEncoder();
+    startTime = Timer.getFPGATimestamp();
   }
 
   @Override
   public void autonomousPeriodic() {
-    //double time = Timer.getFPGATimestamp();
+    double time = Timer.getFPGATimestamp();
 
-    Autonomous.drive15ft();
+    //Autonomous.drive15ft();
+    if(time - startTime < 2){
+      ArcadeDrive.startDriveAuto();
+      ElevatorMotion.pickupAuto();
+    } else {
+      ArcadeDrive.stopDriveAuto();
+    }
   }
 
   @Override
@@ -57,8 +63,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     ArcadeDrive.arcadeDrive();
 
-    ElevatorMotion.modes();
+    //ElevatorMotion.modes();
     
+
     ElevatorMotion.moveElevator();
     ElevatorMotion.moveArm();
     ElevatorMotion.moveClaw();

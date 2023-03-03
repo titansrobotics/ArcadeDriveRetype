@@ -10,7 +10,7 @@ public class ArcadeDrive {
 
     private static Joystick driveJoy = new Joystick(0);
 
-    private static double defaultSpeed = 0.6;
+    private static double defaultSpeed = 0.75;
 
     public static void arcadeDrive(){
         double speed = -driveJoy.getRawAxis(1)*defaultSpeed;
