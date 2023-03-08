@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class ElevatorMotion {
     /***********CHANGE CHANNEL VALUE********/
     //Motors
+    //private static CANSparkMax elevRight = new CANSparkMax(6, MotorType.kBrushless);
     private static CANSparkMax elevLeft = new CANSparkMax(8, MotorType.kBrushless);
-    private static CANSparkMax elevRight = new CANSparkMax(6, MotorType.kBrushless);
     private static CANSparkMax armRotate = new CANSparkMax(9, MotorType.kBrushless);
     private static CANSparkMax clawLeft = new CANSparkMax(7, MotorType.kBrushless);
     private static CANSparkMax clawRight = new CANSparkMax(5, MotorType.kBrushless);
@@ -35,8 +35,8 @@ public class ElevatorMotion {
 
     //Speeds
     private static double elevatorDefaultSpeed = 0.3;
-    private static double armRotateDefaultSpeed = 0.75;
-    private static double clawDefaultSpeed = 0.5;
+    private static double armRotateDefaultSpeed = 0.7;
+    private static double clawDefaultSpeed = 0.3;
 
     //Max Movement
     private static double armAngle = 0;
@@ -64,20 +64,21 @@ public class ElevatorMotion {
 
     public static void raiseElevator(){
         elevLeft.set(elevatorDefaultSpeed);
-        elevRight.set(elevatorDefaultSpeed);
+        //elevRight.set(elevatorDefaultSpeed);
     }
 
     public static void lowerElevator(){
         elevLeft.set(-elevatorDefaultSpeed);
-        elevRight.set(-elevatorDefaultSpeed);   }
+        //elevRight.set(-elevatorDefaultSpeed);   
+    }
 
     public static void stopElevator(){
         elevLeft.set(0);
-        elevRight.set(0);
+        //elevRight.set(0);
     }
 
     public static void moveArm(){
-        double armSpeed = elevatorJoy.getRawAxis(1)*elevatorDefaultSpeed;
+        double armSpeed = -elevatorJoy.getRawAxis(1)*armRotateDefaultSpeed;
         armRotate.set(armSpeed);
         // if(raiseArmButton.getAsBoolean( /*&& Autonomous.getArmRotation() < armAngle*/){
         //     armRotate.set(-armRotateDefaultSpeed);
@@ -114,12 +115,12 @@ public class ElevatorMotion {
         }
     }
 
-    public static void pickupAuto(){
-        clawLeft.set(0.05);
-        clawRight.set(-0.05);
+    public static void tossAuto(){
+        clawLeft.set(-0.3);
+        clawRight.set(0.3);
     }
 
-    public static void stopPickupAuto(){
+    public static void stopTossAuto(){
         clawLeft.set(0);
         clawRight.set(0);
     }

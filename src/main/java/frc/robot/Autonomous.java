@@ -4,22 +4,18 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class Autonomous {
     /**************CHANGE VALUES**********************/
-    // private static Encoder armEncoder = new Encoder(0, 1);
-    // private static Encoder elevatorEncoder = new Encoder(0, 1);
-    // private static Encoder driveEncoder = new Encoder(0,1);
-    private static int ppr = 2048;
-    private static double wheelD = 5.968/12; //in feet
-    private static double elevD = 1.638/12; //in feet
-    private static double elevatorGearBox = 12;
-    
-    // public static void setUpEncoder(){
-    //     driveEncoder.reset();
-    //     driveEncoder.setDistancePerPulse(2*Math.PI/ppr*Math.PI*wheelD);
-    //     armEncoder.reset();
-    //     armEncoder.setDistancePerPulse(360/ppr); //only need rotation
-    //     elevatorEncoder.reset();
-    //     elevatorEncoder.setDistancePerPulse(2*Math.PI/ppr*Math.PI*elevD/elevatorGearBox);
-    // }
+    private static Encoder armEncoder = new Encoder(2, 3);
+    private static Encoder driveEncoder = new Encoder(0,1);
+    private static double ppr = 512.0;
+    private static double wheelD = 0.5; //in feet
+    private static int driveGearBox = 9;
+
+    public static void setUpEncoder(){
+        driveEncoder.reset();
+        driveEncoder.setDistancePerPulse(360/ppr*Math.PI*wheelD*driveGearBox);
+        armEncoder.reset();
+        armEncoder.setDistancePerPulse(360/ppr); //only need rotation
+    }
 
     // public static void drive15ft(){
     //     if(driveEncoder.getDistance() < 15){
@@ -29,15 +25,11 @@ public class Autonomous {
     //     }
     // }
 
-    // public static double getDriveDistance(){
-    //     return driveEncoder.getDistance();
-    // }
+    public static double getDriveDistance(){
+        return driveEncoder.getDistance();
+    }
 
-    // public static double getArmRotation(){
-    //     return armEncoder.getDistance();
-    // }
-
-    // public static double getElevatorDistance(){
-    //     return elevatorEncoder.getDistance();
-    // }
+    public static double getArmRotation(){
+        return armEncoder.getDistance();
+    }
 }

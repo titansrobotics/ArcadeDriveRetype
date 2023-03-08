@@ -8,8 +8,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 //camera server import
-import edu.wpi.first.cameraserver.CameraServer;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -29,8 +27,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Forces the cameras to start. Dunno if we actually need this but I'm adding it
     // just to make sure we get both camera streams up and running.
-    CameraServer.startAutomaticCapture("Cam0",0);
-    CameraServer.startAutomaticCapture("Cam1",1);
+    //Autonomous.setUpEncoder();
   }
 
   @Override
@@ -47,11 +44,13 @@ public class Robot extends TimedRobot {
     double time = Timer.getFPGATimestamp();
 
     //Autonomous.drive15ft();
-    if(time - startTime < 2){
-      ArcadeDrive.startDriveAuto();
-      ElevatorMotion.pickupAuto();
-    } else {
-      ArcadeDrive.stopDriveAuto();
+    if(time - startTime < 0.5){
+      ElevatorMotion.tossAuto();
+    } else if(time - startTime < 2){
+      ElevatorMotion.stopTossAuto();
+      ArcadeDrive.startDriveBackAuto();
+    } else{
+      ArcadeDrive.stopDriveBackAuto();
     }
   }
 
@@ -61,10 +60,15 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    ArcadeDrive.arcadeDrive();
-
-    //ElevatorMotion.modes();
+    //test
     
+    // if(Autonomous.getDriveDistance() < 10){
+    //    ArcadeDrive.startDriveAuto();
+    //  } else {
+    //    ArcadeDrive.stopDriveAuto();
+    //  }
+    //ElevatorMotion.modes();
+    ArcadeDrive.arcadeDrive();
 
     ElevatorMotion.moveElevator();
     ElevatorMotion.moveArm();

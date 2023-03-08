@@ -23,12 +23,12 @@ public class ArcadeDrive {
         rightMotor.set(-right);
     }
 
-    public static void startDriveAuto(){
-        leftMotor.set(defaultSpeed);
-        rightMotor.set(-defaultSpeed);
+    public static void startDriveBackAuto(){
+        leftMotor.set(-defaultSpeed);
+        rightMotor.set(defaultSpeed);
     }
 
-    public static void stopDriveAuto(){
+    public static void stopDriveBackAuto(){
         leftMotor.set(0);
         rightMotor.set(0);
     }
